@@ -1,0 +1,5 @@
+type Pool @entity {
+  id: ID!
+  frozen: Boolean!
+  lastAction: BigInt!
+}

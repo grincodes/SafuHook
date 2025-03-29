@@ -1,0 +1,28 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SafuHook
+    network: base-sepolia
+    source:
+      address: "0x9B93A5B947ca7154046038C5DBd86BFD5D13b587"
+      abi: SafuHook
+      startBlock: 16759592
+mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: typescript
+      entities:
+        - Pool
+      abis:
+        - name: SafuHook
+          file: ./abis/SafuHook.json
+      eventHandlers:
+        - event: PoolFrozen(indexed bytes32)
+          handler: handlePoolFrozen
+        - event: PoolUnfrozen(indexed bytes32)
+          handler: handlePoolUnfrozen
+      file: ./src/mappings.ts
